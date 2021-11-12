@@ -1,0 +1,98 @@
+2021-11-09 16:29:41,561 Namespace(cfg='experiments/landcover/seg_hrnet_w48_train_512x512_sgd_lr1e-2_wd5e-4_bs_12_epoch484.yaml', local_rank=0, opts=[])
+2021-11-09 16:29:41,562 AUTO_RESUME: False
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+DATASET:
+  DATASET: landcover
+  EXTRA_TRAIN_SET: 
+  NUM_CLASSES: 7
+  ROOT: data/
+  TEST_SET: list/landcover/val.lst
+  TRAIN_SET: list/landcover/train.lst
+DEBUG:
+  DEBUG: False
+  SAVE_BATCH_IMAGES_GT: False
+  SAVE_BATCH_IMAGES_PRED: False
+  SAVE_HEATMAPS_GT: False
+  SAVE_HEATMAPS_PRED: False
+GPUS: (0, 1)
+LOG_DIR: log
+LOSS:
+  CLASS_BALANCE: True
+  OHEMKEEP: 131072
+  OHEMTHRES: 0.9
+  USE_OHEM: False
+MODEL:
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    STAGE1:
+      BLOCK: BOTTLENECK
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4]
+      NUM_CHANNELS: [64]
+      NUM_MODULES: 1
+      NUM_RANCHES: 1
+    STAGE2:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4]
+      NUM_BRANCHES: 2
+      NUM_CHANNELS: [48, 96]
+      NUM_MODULES: 1
+    STAGE3:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4]
+      NUM_BRANCHES: 3
+      NUM_CHANNELS: [48, 96, 192]
+      NUM_MODULES: 4
+    STAGE4:
+      BLOCK: BASIC
+      FUSE_METHOD: SUM
+      NUM_BLOCKS: [4, 4, 4, 4]
+      NUM_BRANCHES: 4
+      NUM_CHANNELS: [48, 96, 192, 384]
+      NUM_MODULES: 3
+  NAME: seg_hrnet
+  PRETRAINED: pretrained_models/hrnetv2_w48_imagenet_pretrained.pth
+OUTPUT_DIR: output
+PIN_MEMORY: True
+PRINT_FREQ: 100
+RANK: 0
+TEST:
+  BASE_SIZE: 512
+  BATCH_SIZE_PER_GPU: 4
+  CENTER_CROP_TEST: False
+  FLIP_TEST: False
+  IMAGE_SIZE: [512, 512]
+  MODEL_FILE: 
+  MULTI_SCALE: False
+  NUM_SAMPLES: 0
+  SCALE_LIST: [1]
+TRAIN:
+  BASE_SIZE: 512
+  BATCH_SIZE_PER_GPU: 3
+  BEGIN_EPOCH: 0
+  DOWNSAMPLERATE: 1
+  END_EPOCH: 484
+  EXTRA_EPOCH: 0
+  EXTRA_LR: 0.001
+  FLIP: True
+  IGNORE_LABEL: 255
+  IMAGE_SIZE: [512, 512]
+  LR: 0.01
+  LR_FACTOR: 0.1
+  LR_STEP: [90, 110]
+  MOMENTUM: 0.9
+  MULTI_SCALE: True
+  NESTEROV: False
+  NUM_SAMPLES: 0
+  OPTIMIZER: sgd
+  RESUME: True
+  SCALE_FACTOR: 16
+  SHUFFLE: True
+  WD: 0.0005
+WORKERS: 2
+2021-11-09 16:29:42,124 => init weights from normal distribution
